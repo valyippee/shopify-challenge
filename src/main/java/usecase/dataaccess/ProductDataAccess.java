@@ -8,7 +8,8 @@ public interface ProductDataAccess {
     void createProduct(String name, String description);
     void createProduct(String name, String description, int minRequired, int inventoryAtHand);
     Product getProductById(long productId);
-    List<Product> getProductsByName(String name);
+    List<Product> getProductsContainingName(String name);
+    List<Product> getAllProducts();
     void updateProductName(long productId, String newName);
     void updateProductDescription(long productId, String description);
     void updateProductInventoryAtHand(long productId, int inventoryAtHand);

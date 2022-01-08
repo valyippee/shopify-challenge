@@ -37,14 +37,19 @@ public class ProductRepository implements ProductDataAccess {
     }
 
     @Override
-    public List<Product> getProductsByName(String name) {
+    public List<Product> getProductsContainingName(String name) {
         List<Product> productsWithMatchingName = new ArrayList<>();
         for (Product product : productList) {
-            if (product.getName().equals(name)) {
+            if (product.getName().toLowerCase().contains(name.toLowerCase())) {
                 productsWithMatchingName.add(product);
             }
         }
         return productsWithMatchingName;
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return this.productList;
     }
 
     @Override
