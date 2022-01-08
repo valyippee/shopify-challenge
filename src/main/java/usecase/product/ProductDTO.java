@@ -3,6 +3,7 @@ package usecase.product;
 import lombok.Getter;
 
 public class ProductDTO {
+
     @Getter
     private final long id;
 
