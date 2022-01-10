@@ -10,6 +10,12 @@ public class Shipment {
     private final long id;
 
     @Getter @Setter
+    private String name;
+
+    @Getter @Setter
+    private String description;
+
+    @Getter @Setter
     private Map<Long, Integer> productAmount;
 
     @Getter @Setter

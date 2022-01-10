@@ -6,11 +6,11 @@ import usecase.dataaccess.ProductDataAccess;
  * A use case class that contains command methods (create, update, and delete)
  * that manipulates {@link entity.Product Product} instances.
  */
-public class ProductCommand implements ProductCreationBoundary, ProductUpdateBoundary, ProductDeletionBoundary {
+public class ProductCommandService implements ProductCreationBoundary, ProductUpdateBoundary, ProductDeletionBoundary {
 
     private final ProductDataAccess productDataAccess;
 
-    public ProductCommand(ProductDataAccess productDataAccess) {
+    public ProductCommandService(ProductDataAccess productDataAccess) {
         this.productDataAccess = productDataAccess;
     }
 

@@ -13,10 +13,10 @@ public class SimpleServiceFactory implements ServiceFactory {
     private final ProductDataAccess productDataAccess;
     private final ShipmentDataAccess shipmentDataAccess;
 
-    private ProductCommand cachedProductCommand;
+    private ProductCommandService cachedProductCommandService;
     private ProductRequestBoundary cachedProductGetter;
 
-    private ShipmentCommand cachedShipmentCommand;
+    private ShipmentCommandService cachedShipmentCommandService;
     private ShipmentRequestBoundary cachedShipmentGetter;
 
     public SimpleServiceFactory(RepositoryFactory repositoryFactory) {
@@ -26,10 +26,10 @@ public class SimpleServiceFactory implements ServiceFactory {
 
     @Override
     public ProductCreationBoundary makeProductCreator() {
-        if (cachedProductCommand == null) {
-            cachedProductCommand = new ProductCommand(productDataAccess);
+        if (cachedProductCommandService == null) {
+            cachedProductCommandService = new ProductCommandService(productDataAccess);
         }
-        return cachedProductCommand;
+        return cachedProductCommandService;
     }
 
     @Override
@@ -42,26 +42,26 @@ public class SimpleServiceFactory implements ServiceFactory {
 
     @Override
     public ProductUpdateBoundary makeProductUpdater() {
-        if (cachedProductCommand == null) {
-            cachedProductCommand = new ProductCommand(productDataAccess);
+        if (cachedProductCommandService == null) {
+            cachedProductCommandService = new ProductCommandService(productDataAccess);
         }
-        return cachedProductCommand;
+        return cachedProductCommandService;
     }
 
     @Override
     public ProductDeletionBoundary makeProductRemover() {
-        if (cachedProductCommand == null) {
-            cachedProductCommand = new ProductCommand(productDataAccess);
+        if (cachedProductCommandService == null) {
+            cachedProductCommandService = new ProductCommandService(productDataAccess);
         }
-        return cachedProductCommand;
+        return cachedProductCommandService;
     }
 
     @Override
     public ShipmentCreationBoundary makeShipmentCreator() {
-        if (cachedShipmentCommand == null) {
-            cachedShipmentCommand = new ShipmentCommand(shipmentDataAccess);
+        if (cachedShipmentCommandService == null) {
+            cachedShipmentCommandService = new ShipmentCommandService(shipmentDataAccess);
         }
-        return cachedShipmentCommand;
+        return cachedShipmentCommandService;
     }
 
     @Override
@@ -74,17 +74,17 @@ public class SimpleServiceFactory implements ServiceFactory {
 
     @Override
     public ShipmentUpdateBoundary makeShipmentUpdater() {
-        if (cachedShipmentCommand == null) {
-            cachedShipmentCommand = new ShipmentCommand(shipmentDataAccess);
+        if (cachedShipmentCommandService == null) {
+            cachedShipmentCommandService = new ShipmentCommandService(shipmentDataAccess);
         }
-        return cachedShipmentCommand;
+        return cachedShipmentCommandService;
     }
 
     @Override
     public ShipmentDeletionBoundary makeShipmentRemover() {
-        if (cachedShipmentCommand == null) {
-            cachedShipmentCommand = new ShipmentCommand(shipmentDataAccess);
+        if (cachedShipmentCommandService == null) {
+            cachedShipmentCommandService = new ShipmentCommandService(shipmentDataAccess);
         }
-        return cachedShipmentCommand;
+        return cachedShipmentCommandService;
     }
 }
