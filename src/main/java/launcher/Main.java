@@ -1,4 +1,4 @@
-package mainapp;
+package launcher;
 
 public class Main {
 }
