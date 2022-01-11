@@ -3,7 +3,12 @@ package controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import launcher.factory.ServiceFactory;
-import usecase.product.*;
+import usecase.product.command.ProductCreationBoundary;
+import usecase.product.command.ProductDeletionBoundary;
+import usecase.product.command.ProductInputDTO;
+import usecase.product.command.ProductUpdateBoundary;
+import usecase.product.query.ProductOutputDTO;
+import usecase.product.query.ProductRequestBoundary;
 
 import static spark.Spark.*;
 

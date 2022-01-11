@@ -1,4 +1,4 @@
-package usecase.shipment;
+package usecase.shipment.query;
 
 import lombok.Getter;
 

@@ -1,6 +1,7 @@
-package usecase.product;
+package usecase.product.command;
 
 import usecase.dataaccess.ProductDataAccess;
+import usecase.product.query.ProductOutputDTO;
 
 /**
  * A use case class that contains command methods (create, update, and delete)

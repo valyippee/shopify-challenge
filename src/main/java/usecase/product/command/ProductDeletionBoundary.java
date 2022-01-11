@@ -1,4 +1,4 @@
-package usecase.product;
+package usecase.product.command;
 
 /**
  * An interface containing delete methods of CRUD

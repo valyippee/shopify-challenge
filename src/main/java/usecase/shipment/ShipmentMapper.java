@@ -1,5 +1,7 @@
 package usecase.shipment;
 
+import usecase.shipment.command.ShipmentInputDTO;
+
 /**
  * A utility class that maps a {@link entity.Shipment Shipment} instance to
  * a {@link ShipmentInputDTO ShipmentDTO} instance.

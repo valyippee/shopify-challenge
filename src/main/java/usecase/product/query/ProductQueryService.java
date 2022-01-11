@@ -1,7 +1,8 @@
-package usecase.product;
+package usecase.product.query;
 
 import entity.Product;
 import usecase.dataaccess.ProductDataAccess;
+import usecase.product.ProductMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +11,11 @@ import java.util.List;
  * A use case class responsible for retrieving data related to
  * {@link entity.Product Product} instances.
  */
-public class ProductGetter implements ProductRequestBoundary {
+public class ProductQueryService implements ProductRequestBoundary {
 
     private final ProductDataAccess productDataAccess;
 
-    public ProductGetter(ProductDataAccess productDataAccess) {
+    public ProductQueryService(ProductDataAccess productDataAccess) {
         this.productDataAccess = productDataAccess;
     }
 

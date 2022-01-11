@@ -1,4 +1,6 @@
-package usecase.product;
+package usecase.product.command;
+
+import usecase.product.query.ProductOutputDTO;
 
 /**
  * An interface containing update methods of CRUD

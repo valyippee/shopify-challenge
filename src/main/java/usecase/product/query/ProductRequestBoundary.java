@@ -1,4 +1,4 @@
-package usecase.product;
+package usecase.product.query;
 
 import java.util.List;
 

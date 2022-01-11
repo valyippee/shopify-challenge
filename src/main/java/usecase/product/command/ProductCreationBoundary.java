@@ -1,4 +1,4 @@
-package usecase.product;
+package usecase.product.command;
 
 /**
  * An interface containing create methods of CRUD

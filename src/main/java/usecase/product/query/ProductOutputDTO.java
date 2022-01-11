@@ -1,8 +1,11 @@
-package usecase.product;
+package usecase.product.query;
 
 import lombok.Getter;
 
-public class ProductInputDTO {
+public class ProductOutputDTO {
+
+    @Getter
+    private final long id;
 
     @Getter
     private final String name;
@@ -16,7 +19,8 @@ public class ProductInputDTO {
     @Getter
     private final int inventoryAtHand;
 
-    public ProductInputDTO(String name, String description, int minimumRequired, int inventoryAtHand) {
+    public ProductOutputDTO(long id, String name, String description, int minimumRequired, int inventoryAtHand) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.minimumRequired = minimumRequired;

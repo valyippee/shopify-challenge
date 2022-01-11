@@ -1,6 +1,7 @@
 package usecase.product;
 
 import entity.Product;
+import usecase.product.query.ProductOutputDTO;
 
 import java.util.ArrayList;
 import java.util.List;

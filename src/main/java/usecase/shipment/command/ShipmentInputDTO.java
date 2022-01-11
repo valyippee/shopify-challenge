@@ -1,4 +1,4 @@
-package usecase.shipment;
+package usecase.shipment.command;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,13 +1,13 @@
 package launcher.factory;
 
-import usecase.product.ProductCreationBoundary;
-import usecase.product.ProductDeletionBoundary;
-import usecase.product.ProductRequestBoundary;
-import usecase.product.ProductUpdateBoundary;
-import usecase.shipment.ShipmentCreationBoundary;
-import usecase.shipment.ShipmentDeletionBoundary;
-import usecase.shipment.ShipmentRequestBoundary;
-import usecase.shipment.ShipmentUpdateBoundary;
+import usecase.product.command.ProductCreationBoundary;
+import usecase.product.command.ProductDeletionBoundary;
+import usecase.product.query.ProductRequestBoundary;
+import usecase.product.command.ProductUpdateBoundary;
+import usecase.shipment.command.ShipmentCreationBoundary;
+import usecase.shipment.command.ShipmentDeletionBoundary;
+import usecase.shipment.query.ShipmentRequestBoundary;
+import usecase.shipment.command.ShipmentUpdateBoundary;
 
 public interface ServiceFactory {
 

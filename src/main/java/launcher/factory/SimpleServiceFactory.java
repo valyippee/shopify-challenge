@@ -2,8 +2,18 @@ package launcher.factory;
 
 import usecase.dataaccess.ProductDataAccess;
 import usecase.dataaccess.ShipmentDataAccess;
-import usecase.product.*;
-import usecase.shipment.*;
+import usecase.product.command.ProductCommandService;
+import usecase.product.command.ProductCreationBoundary;
+import usecase.product.command.ProductDeletionBoundary;
+import usecase.product.command.ProductUpdateBoundary;
+import usecase.product.query.ProductQueryService;
+import usecase.product.query.ProductRequestBoundary;
+import usecase.shipment.command.ShipmentCommandService;
+import usecase.shipment.command.ShipmentCreationBoundary;
+import usecase.shipment.command.ShipmentDeletionBoundary;
+import usecase.shipment.command.ShipmentUpdateBoundary;
+import usecase.shipment.query.ShipmentQueryService;
+import usecase.shipment.query.ShipmentRequestBoundary;
 
 /**
  * A factory responsible for creation of service classes.
@@ -35,7 +45,7 @@ public class SimpleServiceFactory implements ServiceFactory {
     @Override
     public ProductRequestBoundary makeProductGetter() {
         if (cachedProductGetter == null) {
-            cachedProductGetter = new ProductGetter(productDataAccess);
+            cachedProductGetter = new ProductQueryService(productDataAccess);
         }
         return cachedProductGetter;
     }
@@ -67,7 +77,7 @@ public class SimpleServiceFactory implements ServiceFactory {
     @Override
     public ShipmentRequestBoundary makeShipmentGetter() {
         if (cachedShipmentGetter == null) {
-            cachedShipmentGetter = new ShipmentGetter(shipmentDataAccess);
+            cachedShipmentGetter = new ShipmentQueryService(shipmentDataAccess);
         }
         return cachedShipmentGetter;
     }
