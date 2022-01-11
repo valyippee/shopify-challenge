@@ -19,22 +19,22 @@ public class ProductGetter implements ProductRequestBoundary {
     }
 
     @Override
-    public List<ProductDTO> getAllProducts() {
+    public List<ProductOutputDTO> getAllProducts() {
         List<Product> productList = productDataAccess.getAllProducts();
-        List<ProductDTO> productDTOList = new ArrayList<>();
+        List<ProductOutputDTO> productOutputDTOList = new ArrayList<>();
         for (Product product : productList) {
-            productDTOList.add(ProductMapper.ProductToProductDTO(product));
+            productOutputDTOList.add(ProductMapper.productToProductDTO(product));
         }
-        return productDTOList;
+        return productOutputDTOList;
     }
 
     @Override
-    public ProductDTO getProductById(long productId) {
-        return ProductMapper.ProductToProductDTO(productDataAccess.getProductById(productId));
+    public ProductOutputDTO getProductById(long productId) {
+        return ProductMapper.productToProductDTO(productDataAccess.getProductById(productId));
     }
 
     @Override
-    public List<ProductDTO> getProductsContainingName(String name) {
-        return null;
+    public List<ProductOutputDTO> getProductsContainingName(String name) {
+        return ProductMapper.productToProductDTO(productDataAccess.getProductsContainingName(name));
     }
 }

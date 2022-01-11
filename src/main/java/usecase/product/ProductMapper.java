@@ -2,9 +2,12 @@ package usecase.product;
 
 import entity.Product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A utility class that maps a {@link entity.Product Product} instance to
- * a {@link ProductDTO ProductDTO} instance.
+ * a {@link ProductOutputDTO ProductDTO} instance.
  */
 public final class ProductMapper {
 
@@ -17,12 +20,20 @@ public final class ProductMapper {
     /**
      *
      * @param product a {@link entity.Product Product} instance to be
-     *                mapped to a {@link ProductDTO ProductDTO} instance.
-     * @return the corresponding {@link ProductDTO ProductDTO} instance.
+     *                mapped to a {@link ProductOutputDTO ProductDTO} instance.
+     * @return the corresponding {@link ProductOutputDTO ProductDTO} instance.
      */
-    public static ProductDTO ProductToProductDTO(Product product) {
-        return new ProductDTO(product.getId(), product.getName(),
+    public static ProductOutputDTO productToProductDTO(Product product) {
+        return new ProductOutputDTO(product.getId(), product.getName(),
                 product.getDescription(), product.getMinimumRequired(),
                 product.getInventoryAtHand());
+    }
+
+    public static List<ProductOutputDTO> productToProductDTO(List<Product> products) {
+        List<ProductOutputDTO> productOutputDTOList = new ArrayList<>();
+        for (Product product : products) {
+            productOutputDTOList.add(productToProductDTO(product));
+        }
+        return productOutputDTOList;
     }
 }

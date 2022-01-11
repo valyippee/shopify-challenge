@@ -8,7 +8,7 @@ public interface ProductCreationBoundary {
 
     /**
      * Creates a {@link entity.Product Product} instance.
-     * @param productDTO contains information needed to do so.
+     * @param productInputDTO contains information needed to do so.
      */
-    void createProduct(ProductDTO productDTO);
+    void createProduct(ProductInputDTO productInputDTO);
 }

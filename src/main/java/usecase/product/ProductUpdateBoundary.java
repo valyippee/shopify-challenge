@@ -8,9 +8,9 @@ public interface ProductUpdateBoundary {
 
     /**
      * Updates a {@link entity.Product Product} instance.
-     * @param productDTO contains new information to be updated.
+     * @param productOutputDTO contains new information to be updated.
      */
-    void updateProduct(ProductDTO productDTO);
+    void updateProduct(ProductOutputDTO productOutputDTO);
 
     /**
      * Updates a {@link entity.Product Product} instance with a new name.

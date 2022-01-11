@@ -15,17 +15,17 @@ public class ProductCommandService implements ProductCreationBoundary, ProductUp
     }
 
     @Override
-    public void createProduct(ProductDTO productDTO) {
-        productDataAccess.createProduct(productDTO.getName(), productDTO.getDescription(),
-                productDTO.getInventoryAtHand(), productDTO.getMinimumRequired());
+    public void createProduct(ProductInputDTO productInputDTO) {
+        productDataAccess.createProduct(productInputDTO.getName(), productInputDTO.getDescription(),
+                productInputDTO.getInventoryAtHand(), productInputDTO.getMinimumRequired());
     }
 
     @Override
-    public void updateProduct(ProductDTO productDTO) {
-        productDataAccess.updateProductName(productDTO.getId(), productDTO.getName());
-        productDataAccess.updateProductDescription(productDTO.getId(), productDTO.getDescription());
-        productDataAccess.updateProductInventoryAtHand(productDTO.getId(), productDTO.getInventoryAtHand());
-        productDataAccess.updateProductMinimumInventory(productDTO.getId(), productDTO.getMinimumRequired());
+    public void updateProduct(ProductOutputDTO productOutputDTO) {
+        productDataAccess.updateProductName(productOutputDTO.getId(), productOutputDTO.getName());
+        productDataAccess.updateProductDescription(productOutputDTO.getId(), productOutputDTO.getDescription());
+        productDataAccess.updateProductInventoryAtHand(productOutputDTO.getId(), productOutputDTO.getInventoryAtHand());
+        productDataAccess.updateProductMinimumInventory(productOutputDTO.getId(), productOutputDTO.getMinimumRequired());
     }
 
     @Override
