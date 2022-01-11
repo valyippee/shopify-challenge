@@ -1,7 +1,7 @@
 package usecase.product.command;
 
 import usecase.dataaccess.ProductDataAccess;
-import usecase.product.query.ProductOutputDTO;
+import usecase.product.query.ProductInputDTO;
 
 /**
  * A use case class that contains command methods (create, update, and delete)
@@ -16,37 +16,17 @@ public class ProductCommandService implements ProductCreationBoundary, ProductUp
     }
 
     @Override
-    public void createProduct(ProductInputDTO productInputDTO) {
+    public void createProduct(usecase.product.command.ProductInputDTO productInputDTO) {
         productDataAccess.createProduct(productInputDTO.getName(), productInputDTO.getDescription(),
                 productInputDTO.getInventoryAtHand(), productInputDTO.getMinimumRequired());
     }
 
     @Override
-    public void updateProduct(ProductOutputDTO productOutputDTO) {
-        productDataAccess.updateProductName(productOutputDTO.getId(), productOutputDTO.getName());
-        productDataAccess.updateProductDescription(productOutputDTO.getId(), productOutputDTO.getDescription());
-        productDataAccess.updateProductInventoryAtHand(productOutputDTO.getId(), productOutputDTO.getInventoryAtHand());
-        productDataAccess.updateProductMinimumInventory(productOutputDTO.getId(), productOutputDTO.getMinimumRequired());
-    }
-
-    @Override
-    public void updateName(long productId, String name) {
-        productDataAccess.updateProductName(productId, name);
-    }
-
-    @Override
-    public void updateDescription(long productId, String description) {
-        productDataAccess.updateProductDescription(productId, description);
-    }
-
-    @Override
-    public void updateMinimumRequired(long productId, int minRequired) {
-        productDataAccess.updateProductMinimumInventory(productId, minRequired);
-    }
-
-    @Override
-    public void updateInventoryAtHand(long productId, int inventoryAtHand) {
-        productDataAccess.updateProductMinimumInventory(productId, inventoryAtHand);
+    public void updateProduct(ProductInputDTO productInputDTO) {
+        productDataAccess.updateProductName(productInputDTO.getId(), productInputDTO.getName());
+        productDataAccess.updateProductDescription(productInputDTO.getId(), productInputDTO.getDescription());
+        productDataAccess.updateProductInventoryAtHand(productInputDTO.getId(), productInputDTO.getInventoryAtHand());
+        productDataAccess.updateProductMinimumInventory(productInputDTO.getId(), productInputDTO.getMinimumRequired());
     }
 
     @Override

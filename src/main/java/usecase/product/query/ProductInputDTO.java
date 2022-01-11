@@ -2,7 +2,7 @@ package usecase.product.query;
 
 import lombok.Getter;
 
-public class ProductOutputDTO {
+public class ProductInputDTO {
 
     @Getter
     private final long id;
@@ -19,7 +19,7 @@ public class ProductOutputDTO {
     @Getter
     private final int inventoryAtHand;
 
-    public ProductOutputDTO(long id, String name, String description, int minimumRequired, int inventoryAtHand) {
+    public ProductInputDTO(long id, String name, String description, int minimumRequired, int inventoryAtHand) {
         this.id = id;
         this.name = name;
         this.description = description;

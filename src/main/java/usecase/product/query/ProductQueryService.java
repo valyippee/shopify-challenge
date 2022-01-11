@@ -20,22 +20,22 @@ public class ProductQueryService implements ProductRequestBoundary {
     }
 
     @Override
-    public List<ProductOutputDTO> getAllProducts() {
+    public List<ProductInputDTO> getAllProducts() {
         List<Product> productList = productDataAccess.getAllProducts();
-        List<ProductOutputDTO> productOutputDTOList = new ArrayList<>();
+        List<ProductInputDTO> productInputDTOList = new ArrayList<>();
         for (Product product : productList) {
-            productOutputDTOList.add(ProductMapper.productToProductDTO(product));
+            productInputDTOList.add(ProductMapper.productToProductDTO(product));
         }
-        return productOutputDTOList;
+        return productInputDTOList;
     }
 
     @Override
-    public ProductOutputDTO getProductById(long productId) {
+    public ProductInputDTO getProductById(long productId) {
         return ProductMapper.productToProductDTO(productDataAccess.getProductById(productId));
     }
 
     @Override
-    public List<ProductOutputDTO> getProductsContainingName(String name) {
+    public List<ProductInputDTO> getProductsContainingName(String name) {
         return ProductMapper.productToProductDTO(productDataAccess.getProductsContainingName(name));
     }
 }

@@ -5,9 +5,8 @@ import com.google.gson.GsonBuilder;
 import launcher.factory.ServiceFactory;
 import usecase.product.command.ProductCreationBoundary;
 import usecase.product.command.ProductDeletionBoundary;
-import usecase.product.command.ProductInputDTO;
 import usecase.product.command.ProductUpdateBoundary;
-import usecase.product.query.ProductOutputDTO;
+import usecase.product.query.ProductInputDTO;
 import usecase.product.query.ProductRequestBoundary;
 
 import static spark.Spark.*;
@@ -71,8 +70,8 @@ public class ProductController {
     private void establishPUTRoutes() {
         put("/products/:id", (req, res) -> {
             res.type("application/json");
-            ProductOutputDTO productOutputDTOToEdit = gson.fromJson(req.body(), ProductOutputDTO.class);
-            this.productUpdateBoundary.updateProduct(productOutputDTOToEdit);
+            ProductInputDTO productInputDTOToEdit = gson.fromJson(req.body(), ProductInputDTO.class);
+            this.productUpdateBoundary.updateProduct(productInputDTOToEdit);
             return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "product updated"));
         });
     }
@@ -83,7 +82,7 @@ public class ProductController {
     private void establishPOSTRoutes() {
         post("/products", (req, res) -> {
             res.type("application/json");
-            ProductInputDTO newProductInputDTO = gson.fromJson(req.body(), ProductInputDTO.class);
+            usecase.product.command.ProductInputDTO newProductInputDTO = gson.fromJson(req.body(), usecase.product.command.ProductInputDTO.class);
             this.productCreationBoundary.createProduct(newProductInputDTO);
             return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "product created"));
         });
