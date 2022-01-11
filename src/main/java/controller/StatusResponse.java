@@ -1,2 +1,6 @@
-package controller;public class StatusResponse {
+package controller;
+
+public enum StatusResponse {
+    SUCCESS,
+    ERROR
 }
