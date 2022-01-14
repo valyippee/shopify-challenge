@@ -1,6 +1,8 @@
 package usecase.product.command;
 
-import usecase.product.query.ProductInputDTO;
+import usecase.exceptions.DoesNotExistException;
+import usecase.exceptions.InvalidInputException;
+import usecase.product.ProductWithIdDTO;
 
 /**
  * An interface containing update methods of CRUD
@@ -10,7 +12,7 @@ public interface ProductUpdateBoundary {
 
     /**
      * Updates a {@link entity.Product Product} instance.
-     * @param productInputDTO contains new information to be updated.
+     * @param productWithIdDTO contains new information to be updated.
      */
-    void updateProduct(ProductInputDTO productInputDTO);
+    void updateProduct(ProductWithIdDTO productWithIdDTO) throws DoesNotExistException, InvalidInputException;
 }

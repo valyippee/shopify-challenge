@@ -2,6 +2,7 @@ package repository;
 
 import usecase.dataaccess.ProductDataAccess;
 import entity.Product;
+import usecase.exceptions.DoesNotExistException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +28,13 @@ public class ProductRepository implements ProductDataAccess {
     }
 
     @Override
-    public Product getProductById(long productId) {
+    public Product getProductById(long productId) throws DoesNotExistException{
         for (Product product : productList) {
             if (product.getId() == productId) {
                 return product;
             }
         }
-        return null;
+        throw new DoesNotExistException("Product does not exist");
     }
 
     @Override
@@ -53,25 +54,25 @@ public class ProductRepository implements ProductDataAccess {
     }
 
     @Override
-    public void updateProductName(long productId, String newName) {
+    public void updateProductName(long productId, String newName) throws DoesNotExistException {
         Product product = this.getProductById(productId);
         product.setName(newName);
     }
 
     @Override
-    public void updateProductDescription(long productId, String description) {
+    public void updateProductDescription(long productId, String description) throws DoesNotExistException {
         Product product = this.getProductById(productId);
         product.setDescription(description);
     }
 
     @Override
-    public void updateProductInventoryAtHand(long productId, int inventoryAtHand) {
+    public void updateProductInventoryAtHand(long productId, int inventoryAtHand) throws DoesNotExistException {
         Product product = this.getProductById(productId);
         product.setInventoryAtHand(inventoryAtHand);
     }
 
     @Override
-    public void updateProductMinimumInventory(long productId, int minRequired) {
+    public void updateProductMinimumInventory(long productId, int minRequired) throws DoesNotExistException {
         Product product = this.getProductById(productId);
         product.setMinimumRequired(minRequired);
     }

@@ -1,14 +1,13 @@
 package usecase.product;
 
 import entity.Product;
-import usecase.product.query.ProductInputDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A utility class that maps a {@link entity.Product Product} instance to
- * a {@link ProductInputDTO ProductDTO} instance.
+ * a {@link ProductWithIdDTO ProductDTO} instance.
  */
 public final class ProductMapper {
 
@@ -21,20 +20,20 @@ public final class ProductMapper {
     /**
      *
      * @param product a {@link entity.Product Product} instance to be
-     *                mapped to a {@link ProductInputDTO ProductDTO} instance.
-     * @return the corresponding {@link ProductInputDTO ProductDTO} instance.
+     *                mapped to a {@link ProductWithIdDTO ProductDTO} instance.
+     * @return the corresponding {@link ProductWithIdDTO ProductDTO} instance.
      */
-    public static ProductInputDTO productToProductDTO(Product product) {
-        return new ProductInputDTO(product.getId(), product.getName(),
+    public static ProductWithIdDTO productToProductWithIdDTO(Product product) {
+        return new ProductWithIdDTO(product.getId(), product.getName(),
                 product.getDescription(), product.getMinimumRequired(),
                 product.getInventoryAtHand());
     }
 
-    public static List<ProductInputDTO> productToProductDTO(List<Product> products) {
-        List<ProductInputDTO> productInputDTOList = new ArrayList<>();
+    public static List<ProductWithIdDTO> productToProductWithIdDTO(List<Product> products) {
+        List<ProductWithIdDTO> productWithIdDTOList = new ArrayList<>();
         for (Product product : products) {
-            productInputDTOList.add(productToProductDTO(product));
+            productWithIdDTOList.add(productToProductWithIdDTO(product));
         }
-        return productInputDTOList;
+        return productWithIdDTOList;
     }
 }
