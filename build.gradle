@@ -1,6 +1,16 @@
 plugins {
-    id 'war'
     id 'java'
+    id "com.github.node-gradle.node" version "3.1.1"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+jar {
+    manifest {
+        attributes (
+                'Main-Class': 'launcher.Main'
+        )
+
+    }
 }
 
 group 'org.example'
@@ -11,9 +21,61 @@ repositories {
     mavenCentral()
 }
 
+node {
+    version = '14.18.1'
+    download = true
+
+    // Set the work directory for unpacking node
+    workDir = file("${project.projectDir}/src/main/frontend/nodejs")
+
+    // Set the work directory for NPM
+    npmWorkDir = file("${project.projectDir}/src/main/frontend/npm")
+
+    // Set the work directory where node_modules should be located
+    nodeModulesDir = file("${project.projectDir}/src/main/frontend")
+}
+
+processResources{
+    dependsOn 'copyFrontendToBuild'
+}
+
+task npmInstallDependencies(type: NpmTask) {
+    dependsOn 'npmSetup'
+    execOverrides {
+        it.ignoreExitValue = true
+        it.workingDir = 'src/main/frontend'
+    }
+    args = ['install']
+}
+
+task npmBuild(type: NpmTask) {
+    dependsOn 'npmInstallDependencies'
+    execOverrides {
+        it.workingDir = 'src/main/frontend'
+    }
+    args = ['run', 'build']
+}
+
+task copyFrontendToBuild(type: Copy) {
+    dependsOn 'npmBuild'
+    from "$projectDir/src/main/frontend/build/"
+//    include "*"
+    into "$buildDir/resources/main/static"
+}
+
+//task npmShowVersion(type: NpmTask) {
+//    execOverrides {
+//        it.ignoreExitValue = true
+//        it.workingDir = 'src/main/frontend'
+//    }
+//    args = ['--version']
+//}
+
+
+
 dependencies {
     implementation "com.sparkjava:spark-core:2.9.3"
-    implementation 'org.slf4j:slf4j-simple:1.7.6'
+    implementation 'org.slf4j:slf4j-simple:1.7.32'
     implementation 'com.google.code.gson:gson:2.8.9'
 
     implementation 'org.projectlombok:lombok:1.18.22'
