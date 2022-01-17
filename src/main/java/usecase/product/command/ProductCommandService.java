@@ -4,7 +4,7 @@ import usecase.dataaccess.ProductDataAccess;
 import usecase.exceptions.DoesNotExistException;
 import usecase.exceptions.InvalidInputException;
 import usecase.product.ProductDTO;
-import usecase.product.ProductWithIdDTO;
+import usecase.product.ProductDTOWithId;
 
 /**
  * A use case class that contains command methods (create, update, and delete)
@@ -31,16 +31,16 @@ public class ProductCommandService implements ProductCreationBoundary, ProductUp
     }
 
     @Override
-    public void updateProduct(ProductWithIdDTO productWithIdDTO) throws DoesNotExistException, InvalidInputException {
-        if (productWithIdDTO.getName().equals("")) {
+    public void updateProduct(ProductDTOWithId productDTOWithId) throws DoesNotExistException, InvalidInputException {
+        if (productDTOWithId.getName().equals("")) {
             throw new InvalidInputException("Name of product cannot be empty");
-        } else if (productWithIdDTO.getInventoryAtHand() < 0 || productWithIdDTO.getMinimumRequired() < 0) {
+        } else if (productDTOWithId.getInventoryAtHand() < 0 || productDTOWithId.getMinimumRequired() < 0) {
             throw new InvalidInputException("Currently inventory or minimum required inventory cannot be less than 0");
         }
-        productDataAccess.updateProductName(productWithIdDTO.getId(), productWithIdDTO.getName());
-        productDataAccess.updateProductDescription(productWithIdDTO.getId(), productWithIdDTO.getDescription());
-        productDataAccess.updateProductInventoryAtHand(productWithIdDTO.getId(), productWithIdDTO.getInventoryAtHand());
-        productDataAccess.updateProductMinimumInventory(productWithIdDTO.getId(), productWithIdDTO.getMinimumRequired());
+        productDataAccess.updateProductName(productDTOWithId.getId(), productDTOWithId.getName());
+        productDataAccess.updateProductDescription(productDTOWithId.getId(), productDTOWithId.getDescription());
+        productDataAccess.updateProductInventoryAtHand(productDTOWithId.getId(), productDTOWithId.getInventoryAtHand());
+        productDataAccess.updateProductMinimumInventory(productDTOWithId.getId(), productDTOWithId.getMinimumRequired());
     }
 
     @Override

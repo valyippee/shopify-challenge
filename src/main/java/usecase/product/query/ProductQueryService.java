@@ -4,7 +4,7 @@ import entity.Product;
 import usecase.dataaccess.ProductDataAccess;
 import usecase.exceptions.DoesNotExistException;
 import usecase.product.ProductMapper;
-import usecase.product.ProductWithIdDTO;
+import usecase.product.ProductDTOWithId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,22 +22,22 @@ public class ProductQueryService implements ProductRequestBoundary {
     }
 
     @Override
-    public List<ProductWithIdDTO> getAllProducts() {
+    public List<ProductDTOWithId> getAllProducts() {
         List<Product> productList = productDataAccess.getAllProducts();
-        List<ProductWithIdDTO> productWithIdDTOList = new ArrayList<>();
+        List<ProductDTOWithId> productDTOWithIdList = new ArrayList<>();
         for (Product product : productList) {
-            productWithIdDTOList.add(ProductMapper.productToProductWithIdDTO(product));
+            productDTOWithIdList.add(ProductMapper.productToProductDTOWithId(product));
         }
-        return productWithIdDTOList;
+        return productDTOWithIdList;
     }
 
     @Override
-    public ProductWithIdDTO getProductById(long productId) throws DoesNotExistException {
-        return ProductMapper.productToProductWithIdDTO(productDataAccess.getProductById(productId));
+    public ProductDTOWithId getProductById(long productId) throws DoesNotExistException {
+        return ProductMapper.productToProductDTOWithId(productDataAccess.getProductById(productId));
     }
 
     @Override
-    public List<ProductWithIdDTO> getProductsContainingName(String name) {
-        return ProductMapper.productToProductWithIdDTO(productDataAccess.getProductsContainingName(name));
+    public List<ProductDTOWithId> getProductsContainingName(String name) {
+        return ProductMapper.productToProductDTOWithId(productDataAccess.getProductsContainingName(name));
     }
 }
