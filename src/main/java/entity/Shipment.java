@@ -19,21 +19,18 @@ public class Shipment {
     private Map<Long, Integer> productAmount;
 
     @Getter @Setter
-    private long warehouseId;
-
-    @Getter @Setter
     private String destination;
 
     @Getter @Setter
     private ShipmentStatus shipmentStatus;
 
-    public Shipment(long id, String name, String description, Map<Long, Integer> productAmount, long warehouseId, String destination) {
+    public Shipment(long id, String name, String description, Map<Long, Integer> productAmount, String destination) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.productAmount = productAmount;
-        this.warehouseId = warehouseId;
         this.destination = destination;
+        this.shipmentStatus = ShipmentStatus.PROCESSING;
     }
 
     public void updateProductAmount(Long productId, Integer amount) {

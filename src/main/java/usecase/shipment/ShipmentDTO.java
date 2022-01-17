@@ -1,14 +1,10 @@
-package usecase.shipment.command;
+package usecase.shipment;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Map;
 
-public class ShipmentInputDTO {
-
-    @Getter
-    private final long id;
+public class ShipmentDTO {
 
     @Getter
     private final String name;
@@ -20,17 +16,12 @@ public class ShipmentInputDTO {
     private final Map<Long, Integer> productAmount;
 
     @Getter
-    private final long warehouseId;
-
-    @Getter
     private final String destination;
 
-    public ShipmentInputDTO(long id, String name, String description, Map<Long, Integer> productAmount, long warehouseId, String destination) {
-        this.id = id;
+    public ShipmentDTO(String name, String description, Map<Long, Integer> productAmount, String destination) {
         this.name = name;
         this.description = description;
         this.productAmount = productAmount;
-        this.warehouseId = warehouseId;
         this.destination = destination;
     }
 }

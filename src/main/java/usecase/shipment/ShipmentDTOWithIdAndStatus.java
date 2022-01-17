@@ -1,42 +1,22 @@
-package usecase.shipment.query;
+package usecase.shipment;
 
 import lombok.Getter;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
-public class ShipmentOutputDTO {
+public class ShipmentDTOWithIdAndStatus extends ShipmentDTO {
 
     @Getter
     private final long id;
 
     @Getter
-    private final String name;
+    private final String status;
 
-    @Getter
-    private final String description;
-
-    @Getter
-    private final Map<Long, Integer> productAmount;
-
-    @Getter
-    private final long warehouseId;
-
-    @Getter
-    private final String destination;
-
-    @Getter
-    private final Map<String, LocalDateTime> statuses;
-
-    public ShipmentOutputDTO(long id, String name, String description,
-                             Map<Long, Integer> productAmount, long warehouseId,
-                             String destination, Map<String, LocalDateTime> statuses) {
+    public ShipmentDTOWithIdAndStatus(long id, String name, String description,
+                                      Map<Long, Integer> productAmount,
+                                      String destination, String status) {
+        super(name, description, productAmount, destination);
         this.id = id;
-        this.name = name;
-        this.description = description;
-        this.productAmount = productAmount;
-        this.warehouseId = warehouseId;
-        this.destination = destination;
-        this.statuses = statuses;
+        this.status = status;
     }
 }

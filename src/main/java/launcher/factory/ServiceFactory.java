@@ -5,9 +5,7 @@ import usecase.product.command.ProductDeletionBoundary;
 import usecase.product.query.ProductRequestBoundary;
 import usecase.product.command.ProductUpdateBoundary;
 import usecase.shipment.command.ShipmentCreationBoundary;
-import usecase.shipment.command.ShipmentDeletionBoundary;
 import usecase.shipment.query.ShipmentRequestBoundary;
-import usecase.shipment.command.ShipmentUpdateBoundary;
 
 public interface ServiceFactory {
 
@@ -46,16 +44,4 @@ public interface ServiceFactory {
      * {@link entity.Shipment Shipment} instances.
      */
     ShipmentRequestBoundary makeShipmentGetter();
-
-    /**
-     * @return a use case class responsible for updating existing
-     * {@link entity.Shipment Shipment} instances.
-     */
-    ShipmentUpdateBoundary makeShipmentUpdater();
-
-    /**
-     * @return a use case class responsible for removing existing
-     * {@link entity.Shipment Shipment} instances.
-     */
-    ShipmentDeletionBoundary makeShipmentRemover();
 }

@@ -10,8 +10,6 @@ import usecase.product.query.ProductQueryService;
 import usecase.product.query.ProductRequestBoundary;
 import usecase.shipment.command.ShipmentCommandService;
 import usecase.shipment.command.ShipmentCreationBoundary;
-import usecase.shipment.command.ShipmentDeletionBoundary;
-import usecase.shipment.command.ShipmentUpdateBoundary;
 import usecase.shipment.query.ShipmentQueryService;
 import usecase.shipment.query.ShipmentRequestBoundary;
 
@@ -80,21 +78,5 @@ public class SimpleServiceFactory implements ServiceFactory {
             cachedShipmentGetter = new ShipmentQueryService(shipmentDataAccess);
         }
         return cachedShipmentGetter;
-    }
-
-    @Override
-    public ShipmentUpdateBoundary makeShipmentUpdater() {
-        if (cachedShipmentCommandService == null) {
-            cachedShipmentCommandService = new ShipmentCommandService(shipmentDataAccess);
-        }
-        return cachedShipmentCommandService;
-    }
-
-    @Override
-    public ShipmentDeletionBoundary makeShipmentRemover() {
-        if (cachedShipmentCommandService == null) {
-            cachedShipmentCommandService = new ShipmentCommandService(shipmentDataAccess);
-        }
-        return cachedShipmentCommandService;
     }
 }
