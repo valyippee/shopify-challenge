@@ -26,7 +26,7 @@ class InventoryCreatePage extends Component {
         console.log(this.state);
         if (typeof this.props.location.state !== 'undefined') {
             // means it is edit page
-            axios.put("http://localhost:4567/products" + this.state.id, {
+            axios.put("/products" + this.state.id, {
                 id: this.state.id,
                 name: this.state.name,
                 description: this.state.description,
@@ -34,7 +34,7 @@ class InventoryCreatePage extends Component {
                 minimumRequired: this.state.minimumRequired
             }).then((response) => console.log(response))
         } else {
-            axios.post("http://localhost:4567/products", {
+            axios.post("/products", {
                 name: this.state.name,
                 description: this.state.description,
                 inventoryAtHand: this.state.inventoryAtHand,
@@ -57,7 +57,7 @@ class InventoryCreatePage extends Component {
                         </Form.Group>
                         <Form.Group>
                             <label htmlFor="inputDescription">Description</label>
-                            <textarea className="form-control" id="inputDescription" rows="8"></textarea>
+                            <textarea value={this.state.description} onChange={e => this.setState({ description: e.target.value })} className="form-control" id="inputDescription" rows="8"></textarea>
                         </Form.Group>
                         <Form.Group>
                             <label htmlFor="inputMinimumRequired">Minimum Inventory Required</label>

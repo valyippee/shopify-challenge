@@ -9,26 +9,23 @@ export class InventoryViewPage extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:4567/products")
+    axios.get("/products")
       .then(response => {
+        console.log(response);
         const products = response.data.data;
-        this.setState({ products })
+        this.setState({ products });
       }).catch(err => console.log(err))
     
   }
 
   deleteProduct(productId) {
-      console.log("delete product with id: " + productId);
-      axios.delete("http://localhost:4567/products/" + productId)
+      axios.delete("/products/" + productId)
         .then(response => {
           console.log(response);
+          window.location.reload();
         })
   }
 
-//   editProduct(productId) {
-//     console.log("edit product with id: " + productId);
-//     axios.put("http://localhost:4567/products/" + productId);
-//   }
 
   renderResultRows() {
     return this.state.products.map((product) => {
