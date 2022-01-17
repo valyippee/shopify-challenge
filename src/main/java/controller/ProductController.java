@@ -3,14 +3,13 @@ package controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import launcher.factory.ServiceFactory;
-import spark.Filter;
 import usecase.exceptions.DoesNotExistException;
 import usecase.exceptions.InvalidInputException;
 import usecase.product.command.ProductCreationBoundary;
 import usecase.product.ProductDTO;
 import usecase.product.command.ProductDeletionBoundary;
 import usecase.product.command.ProductUpdateBoundary;
-import usecase.product.ProductWithIdDTO;
+import usecase.product.ProductDTOWithId;
 import usecase.product.query.ProductRequestBoundary;
 
 import static spark.Spark.*;
@@ -38,6 +37,9 @@ public class ProductController {
         this.gson = gsonBuilder.create();
     }
 
+    /**
+     * Sets up all endpoints related to {@link entity.Product Product} instances
+     */
     public void establishAPIRoutes() {
         establishGETRoutes();
         establishPUTRoutes();
@@ -49,11 +51,6 @@ public class ProductController {
      * Sets up endpoints for HTTP GET requests.
      */
     private void establishGETRoutes() {
-        after((Filter) (request, response) -> {
-            response.header("Access-Control-Allow-Origin", "*");
-            response.header("Access-Control-Allow-Methods", "GET");
-        });
-
         // GET request to retrieve all products
         get("/products", (req, res) -> {
             res.type("application/json");
@@ -65,18 +62,11 @@ public class ProductController {
         get("/products/:id", (req, res) -> {
             res.type("application/json");
             try {
-                ProductWithIdDTO product = this.productRequestBoundary.getProductById(Long.parseLong(req.params(":id")));
+                ProductDTOWithId product = this.productRequestBoundary.getProductById(Long.parseLong(req.params(":id")));
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, gson.toJson(product)));
             } catch (DoesNotExistException e) {
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
             }
-        });
-
-        // GET request to retrieve all products containing a substring
-        get("/products/name/:name", (req, res) -> {
-            res.type("application/json");
-            return gson.toJson(new StandardResponse(StatusResponse.SUCCESS,
-                    gson.toJsonTree(this.productRequestBoundary.getProductsContainingName(req.params(":name")))));
         });
     }
 
@@ -86,7 +76,7 @@ public class ProductController {
     private void establishPUTRoutes() {
         put("/products/:id", (req, res) -> {
             res.type("application/json");
-            ProductWithIdDTO productInputDTOToEdit = gson.fromJson(req.body(), ProductWithIdDTO.class);
+            ProductDTOWithId productInputDTOToEdit = gson.fromJson(req.body(), ProductDTOWithId.class);
             if (Long.parseLong(req.params(":id")) != productInputDTOToEdit.getId()) {
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, "Requested product id " +
                         "does not match id of given product's details"));
@@ -108,8 +98,13 @@ public class ProductController {
         post("/products", (req, res) -> {
             res.type("application/json");
             ProductDTO newProductDTO = gson.fromJson(req.body(), ProductDTO.class);
-            this.productCreationBoundary.createProduct(newProductDTO);
-            return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "product created"));
+            try {
+                this.productCreationBoundary.createProduct(newProductDTO);
+                return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "product created"));
+            } catch (InvalidInputException e) {
+                return gson.toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
+            }
+
         });
     }
 
