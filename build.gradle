@@ -4,7 +4,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
-jar {
+shadowJar {
     manifest {
         attributes (
                 'Main-Class': 'launcher.Main'
@@ -59,19 +59,8 @@ task npmBuild(type: NpmTask) {
 task copyFrontendToBuild(type: Copy) {
     dependsOn 'npmBuild'
     from "$projectDir/src/main/frontend/build/"
-//    include "*"
     into "$buildDir/resources/main/static"
 }
-
-//task npmShowVersion(type: NpmTask) {
-//    execOverrides {
-//        it.ignoreExitValue = true
-//        it.workingDir = 'src/main/frontend'
-//    }
-//    args = ['--version']
-//}
-
-
 
 dependencies {
     implementation "com.sparkjava:spark-core:2.9.3"
