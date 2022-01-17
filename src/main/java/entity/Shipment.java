@@ -24,10 +24,13 @@ public class Shipment {
     @Getter @Setter
     private String destination;
 
+    @Getter @Setter
     private ShipmentStatus shipmentStatus;
 
-    public Shipment(long id, Map<Long, Integer> productAmount, long warehouseId, String destination) {
+    public Shipment(long id, String name, String description, Map<Long, Integer> productAmount, long warehouseId, String destination) {
         this.id = id;
+        this.name = name;
+        this.description = description;
         this.productAmount = productAmount;
         this.warehouseId = warehouseId;
         this.destination = destination;
