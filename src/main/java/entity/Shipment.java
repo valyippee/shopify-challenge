@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.util.Map;
 
+/**
+ * A shipment class that contains products in the inventory to be shipped.
+ */
 public class Shipment {
     @Getter
     private final long id;

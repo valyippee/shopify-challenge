@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A utility class that maps a {@link entity.Product Product} instance to
- * a {@link ProductDTOWithId ProductDTOWithId} instance.
+ * A utility class that maps a {@link entity.Product} instance to
+ * a {@link ProductDTOWithId} instance.
  */
 public final class ProductMapper {
 
@@ -18,10 +18,10 @@ public final class ProductMapper {
     }
 
     /**
-     *
-     * @param product a {@link entity.Product Product} instance to be
-     *                mapped to a {@link ProductDTOWithId ProductDTOWithId} instance.
-     * @return the corresponding {@link ProductDTOWithId ProductDTOWithId} instance.
+     * Maps a {@link entity.Product} instance to a {@link ProductDTOWithId} instance.
+     * @param product a {@link entity.Product} instance to be
+     *                mapped to a {@link ProductDTOWithId} instance.
+     * @return the corresponding {@link ProductDTOWithId} instance.
      */
     public static ProductDTOWithId productToProductDTOWithId(Product product) {
         return new ProductDTOWithId(product.getId(), product.getName(),
@@ -30,7 +30,7 @@ public final class ProductMapper {
     }
 
     /**
-     * Maps a list of {@link entity.Product Product} instances to {@link ProductDTOWithId ProductDTOWithId} instances.
+     * Maps a list of {@link entity.Product} instances to {@link ProductDTOWithId} instances.
      */
     public static List<ProductDTOWithId> productToProductDTOWithId(List<Product> products) {
         List<ProductDTOWithId> productDTOWithIdList = new ArrayList<>();

@@ -8,7 +8,7 @@ import usecase.product.ProductDTOWithId;
 
 /**
  * A use case class that contains command methods (create, update, and delete)
- * that manipulates {@link entity.Product Product} instances.
+ * that manipulates {@link entity.Product} instances.
  */
 public class ProductCommandService implements ProductCreationBoundary, ProductUpdateBoundary, ProductDeletionBoundary {
 
@@ -18,6 +18,13 @@ public class ProductCommandService implements ProductCreationBoundary, ProductUp
         this.productDataAccess = productDataAccess;
     }
 
+    /**
+     * Validates and creates a new {@link entity.Product} instances.
+     * @param productDTO contains information needed to do so.
+     * @throws InvalidInputException when the name given is an empty string,
+     *                                   or when the current inventory or minimum required inventory given are of
+     *                                   negative values.
+     */
     @Override
     public void createProduct(ProductDTO productDTO) throws InvalidInputException {
         if (productDTO.getName().equals("")) {
@@ -29,6 +36,15 @@ public class ProductCommandService implements ProductCreationBoundary, ProductUp
                 productDTO.getInventoryAtHand(), productDTO.getMinimumRequired());
     }
 
+    /**
+     *
+     * @param productDTOWithId contains new information to be updated.
+     * @throws DoesNotExistException when the id given is not associated with any existing
+     *                                  {@link entity.Product} instance in the database
+     * @throws InvalidInputException when the name given is an empty string,
+     *                                  or when the current inventory or minimum required inventory given are of
+     *                                  negative values.
+     */
     @Override
     public void updateProduct(ProductDTOWithId productDTOWithId) throws DoesNotExistException, InvalidInputException {
         if (productDTOWithId.getName().equals("")) {

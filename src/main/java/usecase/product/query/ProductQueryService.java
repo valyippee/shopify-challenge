@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * A use case class responsible for retrieving data related to
- * {@link entity.Product Product} instances.
+ * {@link entity.Product} instances.
  */
 public class ProductQueryService implements ProductRequestBoundary {
 

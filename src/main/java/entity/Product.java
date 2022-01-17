@@ -3,6 +3,9 @@ package entity;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * A product entity that represents each product in the inventory.
+ */
 public class Product {
     @Getter
     private final long id;

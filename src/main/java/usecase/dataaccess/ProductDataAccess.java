@@ -5,6 +5,9 @@ import usecase.exceptions.DoesNotExistException;
 
 import java.util.List;
 
+/**
+ * Provides an interface to access {@link entity.Product} instances
+ */
 public interface ProductDataAccess {
     void createProduct(String name, String description);
     void createProduct(String name, String description, int minRequired, int inventoryAtHand);

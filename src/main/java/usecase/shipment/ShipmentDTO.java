@@ -4,6 +4,11 @@ import lombok.Getter;
 
 import java.util.Map;
 
+/**
+ * A DTO class that contains information about a {@link entity.Shipment} instance.
+ * To be passed down by the controllers when a request to create {@link entity.Shipment} instances
+ * is called from the outer layers.
+ */
 public class ShipmentDTO {
 
     @Getter
