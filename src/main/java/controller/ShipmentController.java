@@ -54,13 +54,14 @@ public class ShipmentController {
      * Sets up endpoints for HTTP POST requests.
      */
     private void establishPOSTRoutes() {
-        post("/products", (req, res) -> {
+        post("/shipments", (req, res) -> {
             res.type("application/json");
             ShipmentDTO newShipmentDTO = gson.fromJson(req.body(), ShipmentDTO.class);
             try {
                 this.shipmentCreationBoundary.createShipment(newShipmentDTO);
                 return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "product created"));
             } catch (InvalidInputException e) {
+                res.status(400);
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
             }
 

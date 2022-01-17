@@ -67,7 +67,7 @@ public class SimpleServiceFactory implements ServiceFactory {
     @Override
     public ShipmentCreationBoundary makeShipmentCreator() {
         if (cachedShipmentCommandService == null) {
-            cachedShipmentCommandService = new ShipmentCommandService(shipmentDataAccess);
+            cachedShipmentCommandService = new ShipmentCommandService(shipmentDataAccess, productDataAccess);
         }
         return cachedShipmentCommandService;
     }

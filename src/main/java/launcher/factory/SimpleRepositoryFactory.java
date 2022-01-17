@@ -17,13 +17,6 @@ public class SimpleRepositoryFactory implements RepositoryFactory {
 
     private final IdGenerator idGenerator = new SimpleIdGenerator();
 
-    // TODO: delete this after (just for data bootstrapping)
-    public SimpleRepositoryFactory() {
-        makeProductRepository();
-        cachedProductDataAccess.createProduct("product1", "");
-        cachedProductDataAccess.createProduct("produc2", "");
-    }
-
     @Override
     public ProductDataAccess makeProductRepository() {
         if (cachedProductDataAccess == null) {

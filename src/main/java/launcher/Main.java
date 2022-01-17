@@ -1,6 +1,7 @@
 package launcher;
 
 import controller.ProductController;
+import controller.ShipmentController;
 import launcher.factory.RepositoryFactory;
 import launcher.factory.ServiceFactory;
 import launcher.factory.SimpleRepositoryFactory;
@@ -13,6 +14,8 @@ public class Main {
         ServiceFactory serviceFactory = new SimpleServiceFactory(repositoryFactory);
 
         ProductController productController = new ProductController(serviceFactory);
+        ShipmentController shipmentController = new ShipmentController(serviceFactory);
         productController.establishAPIRoutes();
+        shipmentController.establishAPIRoutes();
     }
 }

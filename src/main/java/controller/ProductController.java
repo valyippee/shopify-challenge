@@ -65,6 +65,7 @@ public class ProductController {
                 ProductDTOWithId product = this.productRequestBoundary.getProductById(Long.parseLong(req.params(":id")));
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, gson.toJson(product)));
             } catch (DoesNotExistException e) {
+                res.status(400);
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
             }
         });
@@ -85,6 +86,7 @@ public class ProductController {
                 this.productUpdateBoundary.updateProduct(productInputDTOToEdit);
                 return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "product updated"));
             } catch (DoesNotExistException | InvalidInputException e) {
+                res.status(400);
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
             }
 
@@ -102,6 +104,7 @@ public class ProductController {
                 this.productCreationBoundary.createProduct(newProductDTO);
                 return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "product created"));
             } catch (InvalidInputException e) {
+                res.status(400);
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
             }
 
