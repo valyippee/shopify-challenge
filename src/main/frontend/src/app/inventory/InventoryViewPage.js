@@ -41,7 +41,8 @@ export class InventoryViewPage extends Component {
                 state: {name: product.name,
                         description: product.description,
                         minimumRequired: product.minimumRequired,
-                        inventoryAtHand: product.inventoryAtHand
+                        inventoryAtHand: product.inventoryAtHand,
+                        id: product.id
                       }
               }}>
               <i className="mdi mdi-file-check btn-icon-prepend"></i>Edit</Link></button>

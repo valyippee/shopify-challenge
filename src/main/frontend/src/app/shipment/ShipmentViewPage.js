@@ -1,35 +1,56 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import {Link} from "react-router-dom";
 
 class ShipmentViewPage extends Component {
   state = {
-    shipments: []
+    shipments: [],
+      product: []
   }
 
   componentDidMount() {
-    // axios.get("http://localhost:4567/shipments")
-    //   .then(response => {
-    //     const products = response.data.data;
-    //     this.setState({ products })
-    //   }).catch(err => console.log(err))
+    axios.get("/shipments")
+      .then(response => {
+        const shipments = response.data.data;
+        this.setState({ shipments })
+      }).catch(err => console.log(err))
+  }
+
+  getProductName(id) {
+      axios.get("/products" + id)
+          .then(response => {
+              const product = response.data.data;
+              this.setState({ product })
+          }).catch(err => console.log(err))
+  }
+
+  renderProductAmount(productAmount) {
+      // return productAmount.map((product) => {
+      //     this.getProductName(product.id);
+      //     return (
+      //         <tr key={product.id}>
+      //             <td data-title="ProductName">{this.state.product.name}</td>
+      //             <td data-title="Amount">{product.amount}</td>
+      //         </tr>
+      //     )
+      // })
   }
 
   renderResultRows() {
-    // return this.state.shipments.map((shipment) => {
-    //   return (
-    //     <tr key={shipment.id}>
-    //       <td data-title="Name">{shipment.name}</td>
-    //       <td data-title="Description">{shipment.description}</td>
-    //       <td data-title="CurrInventory">{shipment.inventoryAtHand}</td>
-    //       <td data-title="MinRequired">{shipment.minimumRequired}</td>
-    //       <td>
-    //         <button type="button" className="btn btn-outline-secondary btn-icon-text">  <i className="mdi mdi-file-check btn-icon-prepend"></i>Edit</button>
-    //       </td>
-    //       <td>
-    //       <button type="button" className="btn btn-outline-danger btn-icon-text"><i className="mdi mdi-delete btn-icon-prepend"></i> Delete </button>
-    //       </td>
-    //     </tr>
-    //   )
-    // })
+    return this.state.shipments.map((shipment) => {
+      return (
+        <tr key={shipment.id}>
+          <td data-title="Name">{shipment.name}</td>
+          <td data-title="Description">{shipment.description}</td>
+          <td data-title="Destination">{shipment.destination}</td>
+          <td data-title="ProductAmount">
+              <table>
+                  {this.renderProductAmount(shipment.productAmount)}
+              </table>
+          </td>
+        </tr>
+      )
+    })
   }
 
   render() {
@@ -38,6 +59,7 @@ class ShipmentViewPage extends Component {
       <div>
         <div className="page-header">
           <h3 className="page-title"> Shipment </h3>
+            <Link to="/shipment/create"><button className="btn btn-primary mr-2">Create</button></Link>
         </div>
         <div className="row">
           <div className="col-lg-12 grid-margin stretch-card">
@@ -49,10 +71,8 @@ class ShipmentViewPage extends Component {
                       <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Current Inventory</th>
-                        <th>Minimum Inventory Required</th>
-                        <th></th>
-                        <th></th>
+                        <th>Destination</th>
+                        <th>Products included</th>
                       </tr>
                     </thead>
                     <tbody>

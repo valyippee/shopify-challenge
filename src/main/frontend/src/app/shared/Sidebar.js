@@ -51,9 +51,9 @@ class Sidebar extends Component {
         <ul className="nav">      
           <li className={ this.isPathActive('/inventory') ? 'nav-item active' : 'nav-item' }>
             <div className={ this.state.inventoryMenuOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ () => this.toggleMenuState('inventoryMenuOpen') } data-toggle="collapse">
-              <i className="mdi mdi-chart-line menu-icon"></i>
+              <i className="mdi mdi-chart-line menu-icon" />
               <span className="menu-title"><Trans>Inventory</Trans></span>
-              <i className="menu-arrow"></i>
+              <i className="menu-arrow" />
             </div>
             <Collapse in={ this.state.inventoryMenuOpen }>
               <ul className="nav flex-column sub-menu">
@@ -64,14 +64,13 @@ class Sidebar extends Component {
 
           <li className={ this.isPathActive('/shipment') ? 'nav-item active' : 'nav-item' }>
             <div className={ this.state.shipmentMenuOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ () => this.toggleMenuState('shipmentMenuOpen') } data-toggle="collapse">
-              <i className="mdi mdi-crosshairs-gps menu-icon"></i>
+              <i className="mdi mdi-crosshairs-gps menu-icon"/>
               <span className="menu-title"><Trans>Shipment</Trans></span>
-              <i className="menu-arrow"></i>
+              <i className="menu-arrow"/>
             </div>
             <Collapse in={ this.state.shipmentMenuOpen }>
               <ul className="nav flex-column sub-menu">
                 <li className="nav-item"> <Link className={ this.isPathActive('/shipment/view') ? 'nav-link active' : 'nav-link' } to="/shipment/view"><Trans>View</Trans></Link></li>
-                <li className="nav-item"> <Link className={ this.isPathActive('/shipment/create') ? 'nav-link active' : 'nav-link' } to="/shipment/create"><Trans>Create</Trans></Link></li>
               </ul>
             </Collapse>
           </li>
