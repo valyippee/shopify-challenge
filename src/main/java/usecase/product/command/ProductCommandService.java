@@ -23,11 +23,10 @@ public class ProductCommandService implements ProductCreationBoundary, ProductUp
         if (productDTO.getName().equals("")) {
             throw new InvalidInputException("Name of product cannot be empty");
         } else if (productDTO.getInventoryAtHand() < 0 || productDTO.getMinimumRequired() < 0) {
-            throw new InvalidInputException("Currently inventory or minimum required inventory cannot be less than 0");
-        } else {
-            productDataAccess.createProduct(productDTO.getName(), productDTO.getDescription(),
-                    productDTO.getInventoryAtHand(), productDTO.getMinimumRequired());
+            throw new InvalidInputException("Current inventory or minimum required inventory cannot be less than 0");
         }
+        productDataAccess.createProduct(productDTO.getName(), productDTO.getDescription(),
+                productDTO.getInventoryAtHand(), productDTO.getMinimumRequired());
     }
 
     @Override
@@ -35,7 +34,7 @@ public class ProductCommandService implements ProductCreationBoundary, ProductUp
         if (productDTOWithId.getName().equals("")) {
             throw new InvalidInputException("Name of product cannot be empty");
         } else if (productDTOWithId.getInventoryAtHand() < 0 || productDTOWithId.getMinimumRequired() < 0) {
-            throw new InvalidInputException("Currently inventory or minimum required inventory cannot be less than 0");
+            throw new InvalidInputException("Current inventory or minimum required inventory cannot be less than 0");
         }
         productDataAccess.updateProductName(productDTOWithId.getId(), productDTOWithId.getName());
         productDataAccess.updateProductDescription(productDTOWithId.getId(), productDTOWithId.getDescription());

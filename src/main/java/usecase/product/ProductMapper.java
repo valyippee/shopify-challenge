@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * A utility class that maps a {@link entity.Product Product} instance to
- * a {@link ProductDTOWithId ProductDTO} instance.
+ * a {@link ProductDTOWithId ProductDTOWithId} instance.
  */
 public final class ProductMapper {
 
@@ -20,8 +20,8 @@ public final class ProductMapper {
     /**
      *
      * @param product a {@link entity.Product Product} instance to be
-     *                mapped to a {@link ProductDTOWithId ProductDTO} instance.
-     * @return the corresponding {@link ProductDTOWithId ProductDTO} instance.
+     *                mapped to a {@link ProductDTOWithId ProductDTOWithId} instance.
+     * @return the corresponding {@link ProductDTOWithId ProductDTOWithId} instance.
      */
     public static ProductDTOWithId productToProductDTOWithId(Product product) {
         return new ProductDTOWithId(product.getId(), product.getName(),
@@ -29,6 +29,9 @@ public final class ProductMapper {
                 product.getInventoryAtHand());
     }
 
+    /**
+     * Maps a list of {@link entity.Product Product} instances to {@link ProductDTOWithId ProductDTOWithId} instances.
+     */
     public static List<ProductDTOWithId> productToProductDTOWithId(List<Product> products) {
         List<ProductDTOWithId> productDTOWithIdList = new ArrayList<>();
         for (Product product : products) {
