@@ -101,18 +101,17 @@ Navigate to and run the main class at `src/main/java/launcher/Main.java`.
 
 #### Using Windows command prompt
 
-Change directory to the frontend folder using  
-```
-cd src\main\frontend
-``` 
-and run 
-
+Change directory to the frontend folder: `src\main\frontend` and run 
 ```
 npm start
 ```
 to start the frontend.
 
 ## Things to Note
+#### Navigating through the website
+- From the navigation side bar, there are options to view the products or shipments. The create buttons in each page brings you to the page to create products and shipments respectively. 
+- In the products' view page, you can choose to edit or delete each product.
+
 #### Format of inputs when creating/ editing entities from the website
 - When creating/editing products, current inventory and minimum inventory have to be non-negative whole numbers.
 - Name of products and shipments cannot be empty, but they do not have to be unique.
