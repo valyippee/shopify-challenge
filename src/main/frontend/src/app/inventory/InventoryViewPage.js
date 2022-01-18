@@ -14,8 +14,13 @@ export class InventoryViewPage extends Component {
         console.log(response);
         const products = response.data.data;
         this.setState({ products });
-      }).catch(err => console.log(err))
-    
+      }).catch(err => {
+        if (err.response.status === 400) {
+            this.onShowAlert('error', err.response.data.message);
+        } else {
+            this.onShowAlert('error', "Unknown error. Products could not be loaded.")
+        }
+    });
   }
 
   deleteProduct(productId) {
@@ -36,7 +41,8 @@ export class InventoryViewPage extends Component {
           <td data-title="CurrInventory">{product.inventoryAtHand}</td>
           <td data-title="MinRequired">{product.minimumRequired}</td>
           <td>
-            <button type="button" className="btn btn-outline-secondary btn-icon-text"><Link to={{
+            <button type="button" className="btn btn-outline-secondary btn-icon-text">
+                <Link to={{
                 pathname: "/inventory/create",
                 state: {name: product.name,
                         description: product.description,
@@ -44,8 +50,10 @@ export class InventoryViewPage extends Component {
                         inventoryAtHand: product.inventoryAtHand,
                         id: product.id
                       }
-              }}>
-              <i className="mdi mdi-file-check btn-icon-prepend"></i>Edit</Link></button>
+                }}>
+                <i className="mdi mdi-file-check btn-icon-prepend"/>Edit
+                </Link>
+            </button>
           </td>
           <td>
             <button onClick={() => this.deleteProduct(product.id)} type="button" className="btn btn-outline-danger btn-icon-text"><i className="mdi mdi-delete btn-icon-prepend"></i> Delete </button>
@@ -56,7 +64,6 @@ export class InventoryViewPage extends Component {
   }
 
   render() {
-
     return (
       <div>
         <div className="page-header">
@@ -75,8 +82,8 @@ export class InventoryViewPage extends Component {
                         <th>Description</th>
                         <th>Current Inventory</th>
                         <th>Minimum Inventory Required</th>
-                        <th></th>
-                        <th></th>
+                        <th/>
+                        <th/>
                       </tr>
                     </thead>
                     <tbody>

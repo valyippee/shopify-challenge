@@ -27,7 +27,6 @@ class InventoryCreatePage extends Component {
     }
 
     onShowAlert(type, text) {
-        console.log("IN SHOW ALERT")
         this.setState({
             alert: {
                 type: type,
@@ -38,8 +37,6 @@ class InventoryCreatePage extends Component {
     }
 
     createProduct(e) {
-        console.log("creating product!")
-        console.log(this.state);
         e.preventDefault();
         if (typeof this.props.location.state !== 'undefined') {
             // means it is edit page
@@ -79,8 +76,6 @@ class InventoryCreatePage extends Component {
     }
 
     render() {
-        console.log("rendering create page");
-        console.log(this.state);
         return (
             <div>
                 <Alert
