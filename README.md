@@ -7,10 +7,10 @@ The additional feature implemented was the ability to create [`Shipment`](https:
 and assign an amount of `Product` to it specified by the user through the website. The inventory will then be adjusted appropriately. 
 
 ## Table of Contents
-- Install
-- Run
-- Things to Note
-- Bugs/ Issues
+- [Install](#install)
+- [Run](#run)
+- [Things to Note](#things-to-note)
+- [Additional comments](#additional-comments)
 
 ## Install
 The technologies used are Java for the backend (with no frameworks), React for the frontend website, and Gradle for building the application.
@@ -21,7 +21,9 @@ The technologies used are Java for the backend (with no frameworks), React for t
 - [Nodejs](https://nodejs.org/en/download/)
 - An IDE (such as [Intellij](https://www.jetbrains.com/idea/download/#section=windows)) or a command prompt (I have tested the commands on Windows and Linux, but I am not sure if it works with MacOS. If it doesn't, try running the application from an IDE)
 
-#### Installing Java JDK and Nodejs in linux system
+#### Installing Java JDK and Nodejs 
+
+##### Linux system
 Install `Nodejs`:
 ```
 sudo apt install nodejs
@@ -34,6 +36,10 @@ Set `JAVA_HOME`:
 ```
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ```
+
+##### Windows
+
+See the links provided [previously](#technologies-needed).
 
 ## Run
 To run this application, clone this repository and navigate to the root of the project. 
@@ -80,7 +86,7 @@ The build could fail. See [this issue](https://github.com/valyippee/shopify-chal
 
 After resolving the issue, run the `./gradlew build` command again to finish the build.
 
-A jar file will be created at the relative path `\build\libs`
+A jar file will be created at the relative path `/build/libs`
 
 Run 
 ```
@@ -104,12 +110,16 @@ and run
 ```
 npm start
 ```
-
+to start the frontend.
 
 ## Things to Note
+#### Format of inputs when creating/ editing entities from the website
+- When creating/editing products, current inventory and minimum inventory have to be non-negative whole numbers.
+- Name of products and shipments cannot be empty, but they do not have to be unique.
+- When creating a new shipment, you can input the amount of each product to be included in that shipment. However, you should fill in amounts for every product and not leave any of them blank. See this issue for more details. 
 
-shipment status - see issue
+## Additional comments
+1. The frontend code was based on this [template](https://www.bootstrapdash.com/product/star-admin-react-free/).
+2. It may seem idiosyncratic to go through the long process of building a jar file to start the backend and at the same time start the frontend app seperately. The ultimate goal was to package the frontend app together with the backend code as an executable jar, so that anyone who wants to run the code would just need to have java jdk and run the application as a whole jar file. Another approach could be to use Docker that makes the application more portable. Unfortunately, I could not figure it out in time for the internship application, but it is definitely something to look into for me in the future.
+3. There is an attribute called `ShipmentStatus` in the entity class `Shipment`. For simplicity and due to time constraints, I implemented it as a enum with various values to indicate the status of the shipment (whether it has been processed, shipped, etc). However, there are much more room to improve on that, as the "status" of a shipment constitutes many more information, such as time at which the current status is gained (e.g. delivered time), location, and previous statuses etc. I thought of using a composite pattern since a status can contain other statuses. Another approach could be the chain of responsibility pattern, where each status is thought of as a request handler, and they can pass on the "request" to the next handler, which is another status. Currently, I am not sure what is the best approach, but if time permits, it would be an interesting area for me to think more about and implement.
 
-executable jar built but react does not start - future implementation would be to deploy them tgt
-
-frontend was imported from elsewhere - I did not write all the code
