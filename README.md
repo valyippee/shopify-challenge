@@ -16,13 +16,21 @@ The technologies used are Java for the backend (with no frameworks), React for t
 
 To run this application, clone this repository and navigate to the root of the project. 
 
-There are two ways to start the backend server. 
+You will have to run the frontend and backend seperately. By default, the frontend runs on port 3000 and the backend runs on port 4567.
 
-### Firstly, from the command line:
-In the command line, use Gradle wrapper to build the application:
+### To run the backend:
+
+#### Windows command prompt
+
+Use Gradle wrapper to build the application using the command
+
 ```
-./gradlew build 
+.\gradlew build
 ```
+
+The build could fail. See [this issue](https://github.com/valyippee/shopify-challenge/issues/6) and follow the steps to resolve the error.
+
+After that, run the `.\gradlew build` command again to finish the build.
 
 A jar file will be created at the relative path `\build\libs`
 
@@ -30,24 +38,24 @@ Run
 ```
 cd build\libs
 ``` 
-to enter that directory, and 
+and 
 ```
 java -jar .\shopify-challenge-1.0-SNAPSHOT-all.jar
 ``` 
 to start the backend server.
 
+#### IDE
+Navigate and run the main class at `src/main/java/launcher/Main.java`.
 
+### To run the frontend:
 
-### Alternatively, you can run it in an IDE:
+#### Windows command prompt
 
-Start up the backend server by running the main class in ```src\main\java\launcher\Main.java```
-
-### Next, start the frontend:
-In the command line, change directory to the frontend folder using  
+Change directory to the frontend folder using  
 ```
 cd src\main\frontend
 ``` 
-and then, run 
+and run 
 
 ```
 npm start
