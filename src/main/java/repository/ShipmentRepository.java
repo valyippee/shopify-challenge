@@ -2,12 +2,16 @@ package repository;
 
 import entity.Shipment;
 import usecase.dataaccess.ShipmentDataAccess;
-import usecase.exceptions.DoesNotExistException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An implementation of {@link usecase.dataaccess.ShipmentDataAccess}.
+ *
+ * Provides an in-memory database by storing {@link entity.Shipment} instances in a list.
+ */
 public class ShipmentRepository implements ShipmentDataAccess {
 
     private final IdGenerator idGenerator;

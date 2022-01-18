@@ -59,7 +59,7 @@ public class ShipmentController {
             ShipmentDTO newShipmentDTO = gson.fromJson(req.body(), ShipmentDTO.class);
             try {
                 this.shipmentCreationBoundary.createShipment(newShipmentDTO);
-                return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "product created"));
+                return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, "shipment created"));
             } catch (InvalidInputException e) {
                 res.status(400);
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));

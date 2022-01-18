@@ -9,6 +9,8 @@ import usecase.dataaccess.ShipmentDataAccess;
 
 /**
  * A factory responsible for creation of repository classes.
+ *
+ * Returns cached repositories.
  */
 public class SimpleRepositoryFactory implements RepositoryFactory {
 

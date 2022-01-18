@@ -7,6 +7,11 @@ import usecase.exceptions.DoesNotExistException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An implementation of {@link usecase.dataaccess.ProductDataAccess}.
+ *
+ * Provides an in-memory database by storing {@link entity.Product} instances in a list.
+ */
 public class ProductRepository implements ProductDataAccess {
 
     private final IdGenerator idGenerator;
@@ -28,7 +33,7 @@ public class ProductRepository implements ProductDataAccess {
     }
 
     @Override
-    public Product getProductById(long productId) throws DoesNotExistException{
+    public Product getProductById(long productId) throws DoesNotExistException {
         for (Product product : productList) {
             if (product.getId() == productId) {
                 return product;

@@ -7,6 +7,9 @@ import usecase.product.command.ProductUpdateBoundary;
 import usecase.shipment.command.ShipmentCreationBoundary;
 import usecase.shipment.query.ShipmentRequestBoundary;
 
+/**
+ * A factory responsible for making service classes.
+ */
 public interface ServiceFactory {
 
     /**

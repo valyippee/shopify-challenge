@@ -15,6 +15,8 @@ import usecase.shipment.query.ShipmentRequestBoundary;
 
 /**
  * A factory responsible for creation of service classes.
+ *
+ * Returns cached service classes.
  */
 public class SimpleServiceFactory implements ServiceFactory {
 

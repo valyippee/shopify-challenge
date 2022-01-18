@@ -63,7 +63,7 @@ public class ProductController {
             res.type("application/json");
             try {
                 ProductDTOWithId product = this.productRequestBoundary.getProductById(Long.parseLong(req.params(":id")));
-                return gson.toJson(new StandardResponse(StatusResponse.ERROR, gson.toJson(product)));
+                return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, gson.toJsonTree(product)));
             } catch (DoesNotExistException e) {
                 res.status(400);
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));

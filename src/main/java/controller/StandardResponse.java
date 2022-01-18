@@ -4,6 +4,10 @@ import com.google.gson.JsonElement;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * A response class containing relevant information about the outcome of HTTP requests to the server.
+ * Returned as part of the response to HTTP requests.
+ */
 public class StandardResponse {
 
     @Getter @Setter
@@ -14,10 +18,6 @@ public class StandardResponse {
 
     @Getter @Setter
     private JsonElement data;
-
-    public StandardResponse(StatusResponse status) {
-        this.status = status;
-    }
 
     public StandardResponse(StatusResponse status, String message) {
         this.status = status;
