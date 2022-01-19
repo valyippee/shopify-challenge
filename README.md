@@ -51,7 +51,10 @@ See the links provided [previously](#technologies-needed).
 ## Run
 To run this application, clone this repository and navigate to the root of the project. 
 
-You will have to run the frontend and backend seperately. By default, the frontend runs on port 3000 and the backend runs on port 4567.
+You will have to run the frontend and backend separately. By default, the frontend runs on port 3000 and the backend runs on port 4567.
+
+**Important**: If you were to change port for the backend server, also change `"proxy": "http://localhost:4567"` to `"proxy": "http://localhost:<new_port_number>"`
+in `src/main/frontend/package.json` for the requests from frontend to be correctly routed to the backend server.
 
 ### To run the backend:
 
@@ -89,6 +92,8 @@ Next, use Gradle wrapper to build the application using the command
 ./gradlew build
 ```
 
+Note that `/` is used in Linux instead of ` \ `.  
+
 The build could fail. See [this issue](https://github.com/valyippee/shopify-challenge/issues/6) and follow the steps to resolve the error.
 
 After resolving the issue, run the `./gradlew build` command again to finish the build.
@@ -116,7 +121,7 @@ to start the frontend.
 
 ## Things to Note
 #### Navigating through the website
-- From the navigation side bar, there are options to view the products or shipments. The create buttons in each page brings you to the page to create products and shipments respectively. 
+- From the navigation sidebar, there are options to view the products or shipments. The create buttons in each page brings you to the page to create products and shipments respectively. 
 - In the products' view page, you can choose to edit or delete each product.
 
 #### Format of inputs when creating/ editing entities from the website
