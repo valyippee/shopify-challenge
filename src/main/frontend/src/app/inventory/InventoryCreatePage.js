@@ -18,12 +18,16 @@ class InventoryCreatePage extends Component {
             type: 'error',
             text: 'This is a alert message',
             show: false
-        }
+        },
+        editPage: false
     }
 
     constructor(props) {
         super(props);
         this.createProduct = this.createProduct.bind(this);
+        if (typeof this.props.location.state !== 'undefined') {
+            this.state.editPage = true;
+        }
     }
 
     onShowAlert(type, text) {
@@ -38,7 +42,7 @@ class InventoryCreatePage extends Component {
 
     createProduct(e) {
         e.preventDefault();
-        if (typeof this.props.location.state !== 'undefined') {
+        if (this.state.editPage) {
             // means it is edit page
             axios.put("/products/" + this.state.id, {
                 id: this.state.id,
@@ -129,7 +133,6 @@ class InventoryCreatePage extends Component {
                                         <Form.Control value={this.state.inventoryAtHand} onChange={e => this.setState({ inventoryAtHand: e.target.value })} type="text" className="form-control" id="inputCurrentInventory" placeholder="Inventory" />
                                     </Form.Group>
 
-                                    {/*<button onClick={this.createProduct} type="submit" className="btn btn-primary mr-2"><Link to="/inventory/view" className="btn btn-primary mr-2">{this.state.buttonText}</Link></button>*/}
                                     <button onClick={this.createProduct} type="submit" className="btn btn-primary mr-2">{this.state.buttonText}</button>
                                     <button className="btn btn-light"><Link to="/inventory/view">Cancel</Link></button>
                                 </form>
