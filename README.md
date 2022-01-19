@@ -24,14 +24,21 @@ The technologies used are Java for the backend (with no frameworks), React for t
 #### Installing Java JDK and Nodejs 
 
 ##### Linux system
-Install `Nodejs`:
+Install `Nodejs`, `npm, and Java JDK:
 ```
+# update
+sudo apt update
+
+# install nodejs
 sudo apt install nodejs
-```
-Install Java JDK:
-```
+
+# install npm
+sudo apt install npm
+
+# install Java JDK:
 sudo apt install openjdk-11-jdk
 ```
+
 Set `JAVA_HOME`:
 ```
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
@@ -99,7 +106,7 @@ Navigate to and run the main class at `src/main/java/launcher/Main.java`.
 
 ### To run the frontend:
 
-#### Using Windows command prompt
+#### Using Windows or Linux command prompt
 
 Change directory to the frontend folder: `src\main\frontend` and run 
 ```
