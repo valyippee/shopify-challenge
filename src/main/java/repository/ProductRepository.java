@@ -28,7 +28,7 @@ public class ProductRepository implements ProductDataAccess {
     }
 
     @Override
-    public void createProduct(String name, String description, int minRequired, int inventoryAtHand) {
+    public void createProduct(String name, String description, int inventoryAtHand, int minRequired) {
         productList.add(new Product(idGenerator.getNext(), name, description, inventoryAtHand, minRequired));
     }
 

@@ -125,12 +125,12 @@ class InventoryCreatePage extends Component {
                                         <textarea value={this.state.description} onChange={e => this.setState({ description: e.target.value })} className="form-control" id="inputDescription" rows="8" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <label htmlFor="inputMinimumRequired">Minimum Inventory Required</label>
-                                        <Form.Control value={this.state.minimumRequired} onChange={e => this.setState({ minimumRequired: e.target.value })} type="text" className="form-control" id="inputMinimumRequired" placeholder="Minimum Required" />
-                                    </Form.Group>
-                                    <Form.Group>
                                         <label htmlFor="inputCurrentInventory">Current Inventory Available</label>
                                         <Form.Control value={this.state.inventoryAtHand} onChange={e => this.setState({ inventoryAtHand: e.target.value })} type="text" className="form-control" id="inputCurrentInventory" placeholder="Inventory" />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <label htmlFor="inputMinimumRequired">Minimum Inventory Required</label>
+                                        <Form.Control value={this.state.minimumRequired} onChange={e => this.setState({ minimumRequired: e.target.value })} type="text" className="form-control" id="inputMinimumRequired" placeholder="Minimum Required" />
                                     </Form.Group>
 
                                     <button onClick={this.createProduct} type="submit" className="btn btn-primary mr-2">{this.state.buttonText}</button>

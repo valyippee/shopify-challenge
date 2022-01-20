@@ -54,8 +54,6 @@ class ShipmentViewPage extends Component {
               const product = this.state.products[position];
               // note: key is a string, while product id is a number
               if (parseInt(key) === product.id) {
-                  console.log("found matching product: " + product.name);
-                  console.log("this is for key with value: " + key);
                   productArray.push([key, product.name, productAmount[key]]);
                   break;
               }
